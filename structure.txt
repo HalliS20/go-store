@@ -1,0 +1,28 @@
+.
+├── tmp
+│   └── build-errors.log
+├── templates
+│   ├── navbar.html
+│   └── index.html
+├── structure.txt
+├── public
+│   ├── js
+│   ├── images
+│   │   └── Nail.png
+│   └── css
+├── pkg
+│   └── payment
+├── internal
+├── go.sum
+├── go.mod
+├── fly.toml
+├── deployments
+│   └── Dockerfile
+├── db
+├── cmd
+│   └── server
+│       └── main.go
+├── air.toml
+└── TODO.md
+
+14 directories, 12 files

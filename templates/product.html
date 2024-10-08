@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{{.title}}</title>
+    <meta content="Welcome to my shop" name="description"/>
+    <meta content="HalliS20" name="author"/>
+    <meta content="shop, SEO friendly shop" name="keywords"/>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="{{ .favicon }}" rel="icon"/>
+    <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-base-200 min-h-screen flex flex-col grow ">
+{{template "navbar"}}
+{{with .product}}
+<div class="hero h-max grow">
+    <div class="hero-content flex-row lg:flex-row justify-start w-full h-full items-center">
+        <img
+                alt="{{.Description}}"
+                class="w-2/4 rounded-lg shadow-2xl"
+                src="{{.Photo}}"
+                width="100%"
+        />
+        <div>
+            <h1 class="text-5xl font-bold">{{.Name}}</h1>
+            <p class="py-6">
+                {{.Description}}
+            </p>
+            <button class="btn btn-primary">Add to cart</button>
+        </div>
+    </div>
+</div>
+{{end}}
+</body>
+</html>

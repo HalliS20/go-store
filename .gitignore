@@ -1,0 +1,12 @@
+app/.env
+app/.env
+.env
+*/.env
+.DS_Store
+.idea
+node_modules
+.idea/*
+
+/app/tmp
+.cockroachSetup.go
+/tmp
