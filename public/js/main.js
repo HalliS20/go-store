@@ -51,24 +51,6 @@ function fetchContentJSON(url) {
 }
 
 
-function attachButtonListener(button) {
-    button.addEventListener(
-        "click",
-        (e) => {
-            e.preventDefault() // Prevent default button behavior
-            e.stopPropagation() // Stop event from bubbling up
-            const url = button.getAttribute("data-href")
-            if (url && url.startsWith("/")) {
-                history.pushState(null, "", url)
-                fetchContent(url)
-            }
-
-            return false // Prevent onclick from firing
-        },
-        true,
-    ) // Use capturing to ensure this runs before onclick
-}
-
 function attachLinkListener(link) {
     link.addEventListener(
         "click",
