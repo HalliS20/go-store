@@ -16,27 +16,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-{{template "navbar"}}
-<div class="bg-base-200 min-h-screen flex flex-col grow " id="content">
-    {{with .product}}
-    <div class="hero h-max grow">
-        <div class="hero-content flex-row lg:flex-row justify-start w-full h-full items-center">
-            <img
-                    alt="{{.Description}}"
-                    class="w-2/4 rounded-lg shadow-2xl"
-                    src="{{.Photo}}"
-                    width="100%"
-            />
-            <div>
-                <h1 class="text-5xl font-bold">{{.Name}}</h1>
-                <p class="py-6">
-                    {{.Description}}
-                </p>
-                <button class="btn btn-primary">Add to cart</button>
-            </div>
-        </div>
+<div class="min-h-screen w-full bg-base-200 flex flex-col">
+    <nav id="navbar-section">{{template "navbar" .}}</nav>
+    <div class="h-full w-full flex grow" id="content">
+        {{template "product_details" .}}
     </div>
-    {{end}}
 </div>
 </body>
 </html>

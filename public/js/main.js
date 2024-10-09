@@ -9,36 +9,47 @@ function spaLoader() {
         attachAllListeners()
 
         window.addEventListener("popstate", () => {
-            fetchContent(window.location.pathname)
+            fetchContentJSON(window.location.pathname)
         }) // Listen for back/forward button clicks and fetch content
     })
 }
 
-function fetchContent(url) {
+
+function fetchContentJSON(url) {
     const contentDiv = document.getElementById("content")
     fetch(url)
-        .then((response) => response.text())
-        .then((html) => {
+        .then((response) => response.json())  // Change this to parse JSON instead of text
+        .then((data) => {
+            // Parse the HTML content
             const parser = new DOMParser()
-            const doc = parser.parseFromString(html, "text/html")
+            const doc = parser.parseFromString(data.html, "text/html")
 
             // Update the content
-            const newContent = doc.getElementById("content")
-            contentDiv.innerHTML = newContent.innerHTML
+            contentDiv.innerHTML = doc.documentElement.innerHTML
 
             // Update the head
-            document.title = doc.title
+            document.title = data.title
 
             // Update the description meta tag
-            const newDescription = doc.querySelector('meta[name="description"]')
             const currentDescription = document.querySelector('meta[name="description"]')
-            if (newDescription && currentDescription) {
-                currentDescription.setAttribute("content", newDescription.getAttribute("content"))
+            if (currentDescription) {
+                currentDescription.setAttribute("content", data.description)
+            } else {
+                // If the description meta tag doesn't exist, create it
+                const metaDescription = document.createElement('meta')
+                metaDescription.name = "description"
+                metaDescription.content = data.description
+                document.head.appendChild(metaDescription)
             }
 
             attachAllListeners() // Reattach listeners to new content
         })
+        .catch((error) => {
+            console.error('Error fetching content:', error)
+            contentDiv.innerHTML = '<p>Error loading content. Please try again.</p>'
+        })
 }
+
 
 function attachButtonListener(button) {
     button.addEventListener(
@@ -67,9 +78,8 @@ function attachLinkListener(link) {
             const url = link.getAttribute("href")
             if (url && url.startsWith("/")) {
                 history.pushState(null, "", url)
-                fetchContent(url)
+                fetchContentJSON("/nav" + url)
             }
-
             return false // Prevent onclick from firing
         },
         true,

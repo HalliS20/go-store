@@ -1,0 +1,23 @@
+{{define "product_details"}}
+{{with .product}}
+<div class=" flex flex-col grow">
+    <div class="hero h-max grow">
+        <div class="hero-content flex-row lg:flex-row justify-start w-full h-full items-center">
+            <img
+                    alt="{{.Description}}"
+                    class="w-2/4 rounded-lg shadow-2xl"
+                    src="{{.Photo}}"
+                    width="100%"
+            />
+            <div>
+                <h1 class="text-5xl font-bold">{{.Name}}</h1>
+                <p class="py-6">
+                    {{.Description}}
+                </p>
+                <button class="btn btn-primary">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
+{{end}}

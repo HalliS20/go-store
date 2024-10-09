@@ -26,3 +26,50 @@
 └── TODO.md
 
 14 directories, 12 files
+.
+├── tmp
+│   ├── main
+│   └── build-errors.log
+├── templates
+│   ├── product.html
+│   ├── navbar.html
+│   ├── logo.html
+│   └── index.html
+├── structure.txt
+├── public
+│   ├── js
+│   │   └── main.js
+│   ├── images
+│   │   ├── Nail.svg
+│   │   └── Nail.png
+│   └── css
+├── pkg
+│   ├── payment
+│   └── config
+│       └── config.go
+├── internal
+│   ├── router
+│   │   ├── routes.go
+│   │   └── router.go
+│   ├── repository
+│   │   └── supabase.go
+│   ├── models
+│   │   └── product.go
+│   └── domain
+│       └── interfaces
+│           ├── i_router.go
+│           └── i_repository.go
+├── go.sum
+├── go.mod
+├── fly.toml
+├── deployments
+│   └── Dockerfile
+├── db
+│   └── supabase
+│       └── supabase.go
+├── cmd
+│   └── server
+│       └── main.go
+└── TODO.md
+
+21 directories, 24 files

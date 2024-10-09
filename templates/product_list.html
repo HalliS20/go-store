@@ -1,0 +1,32 @@
+{{ define "product_list" }}
+<div class="w-full grow">
+    <img
+            alt="Banner image of the shop"
+            class="shadow"
+            height="auto"
+            src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=2380&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            style="object-fit: cover; width: 100%; height: 23rem"
+            width="100%"
+    />
+    <div class="card_collection flex w-full flex-row">
+        {{range .products}}
+        <a class="card card-compact bg-base-100 w-80 m-4 shadow-lg" href="/products/{{.ID}}">
+            <figure>
+                <img
+                        alt="{{.Description}}"
+                        src="{{.Photo}}"
+                        style="object-fit: cover; width: 100%; height: 21rem"
+                />
+            </figure>
+            <div class="card-body">
+                <h2 class="card-title w-fit">{{.Name}}</h2>
+                <div class="flex w-full flex-row justify-between">
+                    <p class="text-primary">Price: ${{.Price}}</p>
+                    <button class="btn btn-primary w-fit">Buy Now</button>
+                </div>
+            </div>
+        </a>
+        {{end}}
+    </div>
+</div>
+{{ end }}
