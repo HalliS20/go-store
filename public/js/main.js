@@ -9,7 +9,7 @@ function spaLoader() {
         attachAllListeners()
 
         window.addEventListener("popstate", () => {
-            fetchContentJSON(window.location.pathname)
+            fetchContentJSON("/nav" + window.location.pathname)
         }) // Listen for back/forward button clicks and fetch content
     })
 }
@@ -58,6 +58,7 @@ function attachLinkListener(link) {
             e.preventDefault() // Prevent default link behavior
             e.stopPropagation() // Stop event from bubbling up
             const url = link.getAttribute("href")
+
             if (url && url.startsWith("/")) {
                 history.pushState(null, "", url)
                 fetchContentJSON("/nav" + url)
@@ -71,7 +72,7 @@ function attachLinkListener(link) {
 
 function attachAllListeners() {
     document
-        .querySelectorAll('a[href^="/"]')
+        .querySelectorAll('a')
         .forEach(attachLinkListener)
 }
 
