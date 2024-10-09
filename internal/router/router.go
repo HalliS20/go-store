@@ -26,14 +26,14 @@ func (r *Router) SetupRouter() {
 
 	r.e.GET("/", func(c *gin.Context) {
 
-		c.HTML(http.StatusOK, "index.html", gin.H{"title": "SHOE.com", "products": products, "favicon": favicon})
+		c.HTML(http.StatusOK, "index.html", gin.H{"title": "SHOE", "products": products, "favicon": favicon})
 	})
 
 	r.e.GET("/products/:id", func(c *gin.Context) {
 		id := c.Param("id")
 		idInt, _ := strconv.Atoi(id)
 		product := products[idInt-1]
-		c.HTML(http.StatusOK, "product.html", gin.H{"title": "SHOE.com", "product": product, "favicon": favicon})
+		c.HTML(http.StatusOK, "product.html", gin.H{"title": "SHOE", "product": product, "favicon": favicon})
 	})
 
 	r.e.GET("/nav", func(c *gin.Context) {
@@ -47,7 +47,7 @@ func (r *Router) SetupRouter() {
 		}
 		// Log the rendered HTML
 		log.Printf("Rendered HTML for /nav:\n%s", prodList)
-		returnJson := gin.H{"html": prodList, "title": "SHOE.com", "description": "SHOE.com - The best place to buy shoes online"}
+		returnJson := gin.H{"html": prodList, "title": "SHOE", "description": "SHOE.com - The best place to buy shoes online"}
 
 		c.JSON(http.StatusOK, returnJson)
 	})
@@ -65,11 +65,9 @@ func (r *Router) SetupRouter() {
 			return
 		}
 		log.Printf("Rendered HTML for /nav/products/:id :\n%s", prodDetails)
-		returnJson := gin.H{"html": prodDetails, "description": product.Description, "title": product.Name}
+		returnJson := gin.H{"html": prodDetails, "description": product.Description, "title": "SHOE | " + product.Name}
 
 		c.JSON(http.StatusOK, returnJson)
-		//c.Header("Content-Type", "text/html; charset=utf-8")
-		//c.String(http.StatusOK, prodDetails)
 	})
 
 	r.e.GET("/public/*filepath", func(c *gin.Context) {
